@@ -10,9 +10,9 @@ kubectl get pods
 # List tables
 # /l
 
-echo "Creating postgresql DB service"
-kubectl apply -f postgres-deployment.yaml
-kubectl apply -f postgres-service.yaml
+# echo "Creating postgresql DB service"
+# kubectl apply -f postgres-deployment.yaml
+# kubectl apply -f postgres-service.yaml
 
 # List the services
 echo "Show K8s services"
@@ -20,27 +20,31 @@ kubectl get svc
 
 # Set up port-forwarding to `postgresql-service`
 echo "forwarding port for DB service"
-kubectl port-forward service/postgresql-service 5433:5432 &
+# kubectl port-forward service/postgresql-service 5433:5432 &
 
 # Install required libraries
 echo "installing libraries"
-apt update
-apt install -y postgresql postgresql-contrib
+# apt update
+# apt install -y postgresql postgresql-contrib
 
 # Run the SQL queries on the DB
 export DB_PASSWORD=mypassword
 echo "inserting 1_create_tables"
-PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433 < starter/db/1_create_tables.sql
+PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433 < ../starter/db/1_create_tables.sql
 
 echo "inserting 2_seed_users"
-PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433 < starter/db/2_seed_users.sql
+PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433 < ../starter/db/2_seed_users.sql
 
 echo "inserting 3_seed_tokens"
-PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433 < starter/db/3_seed_tokens.sql
+PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433 < ../starter/db/3_seed_tokens.sql
 
 # Verify the entries in the tables
-PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433 "select * from users;"
-PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433 "select * from tokens;"
+PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433
+# By running the following queries
+# select * from users;
+# select * from tokens;
+# PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433 "select * from users;"
+# PGPASSWORD="$DB_PASSWORD" psql --host 127.0.0.1 -U myuser -d mydatabase -p 5433 "select * from tokens;"
 
 # Closer port forwarding
 # ps aux | grep 'kubectl port-forward' | grep -v grep | awk '{print $2}' | xargs -r kill
