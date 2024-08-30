@@ -11,8 +11,8 @@ kubectl get pods
 # /l
 
 echo "Creating postgresql DB service"
-kubectl apply -f postgresql-deployment.yaml
-kubectl apply -f postgresql-service.yaml
+kubectl apply -f postgres-deployment.yaml
+kubectl apply -f postgres-service.yaml
 
 # List the services
 echo "Show K8s services"
