@@ -11,6 +11,6 @@ RUN pip install -r requirements.txt
 
 EXPOSE 5153
 
-COPY ./analytics .
+COPY ./starter/analytics .
 
 CMD python app.py
