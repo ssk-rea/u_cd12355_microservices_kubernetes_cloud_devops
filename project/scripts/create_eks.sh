@@ -14,7 +14,6 @@ kubectl config view
 # Apply PV, PVC, postgres-deployment yaml manifests
 kubectl apply -f pvc.yaml
 kubectl apply -f pv.yaml
-kubectl apply -f postgresql-deployment.yaml
 
 # Get pods on EKS
 kubectl get pods
