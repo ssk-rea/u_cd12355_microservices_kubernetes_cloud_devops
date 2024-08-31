@@ -20,5 +20,20 @@ export DB_HOST=127.0.0.1
 export DB_PORT=5433
 export DB_NAME=mydatabase
 
-echo "Start the application"
-python analytics/app.py
+# echo "Start the application"
+# python analytics/app.py
+
+export IMG_NAME=coworking-app:1
+export CON_NAME=coworking-app-1
+
+printf "\n Build docker image\n"
+docker build -t $IMG_NAME -f project/Dockerfile project/
+
+printf "\n Stop container \n"
+docker stop $CON_NAME
+
+printf "\n Remove container \n"
+docker rm $CON_NAME
+
+printf "\n run the docker container\n"
+docker run -d --network="host" --env-file project/.env --name $CON_NAME -p 5153:5153 $IMG_NAME

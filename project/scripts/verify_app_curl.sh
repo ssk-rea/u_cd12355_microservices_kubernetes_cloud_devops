@@ -1,7 +1,7 @@
 
 
 printf "\nExport app URL\n"
-export BASE_URL=127.0.0.1:5154
+export BASE_URL=127.0.0.1:5153
 printf $BASE_URL
 
 printf "\nRun health_check curl"
@@ -14,7 +14,7 @@ printf "\n"
 
 
 # printf "\nRun daily_usage curl"
-# curl $BASE_URL/api/reports/daily_usage
+curl $BASE_URL/api/reports/daily_usage
 printf "\n"
 
 # printf "\nVerify DB user_visits"
