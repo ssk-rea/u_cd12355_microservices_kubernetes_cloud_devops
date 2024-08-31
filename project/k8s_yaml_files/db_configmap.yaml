@@ -7,3 +7,4 @@ data:
   DB_HOST: '10.100.225.7'
   DB_PORT: '5432'
   DB_NAME: mydatabase
+  DB_PASSWORD: mypassword
