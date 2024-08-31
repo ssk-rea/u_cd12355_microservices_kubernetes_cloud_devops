@@ -21,28 +21,17 @@ For this project, you are a DevOps engineer who will be collaborating with a tea
 
 ### Setup
 #### 1. Configure a Database
-Set up a Postgres database using a Helm Chart.
+Set up a Postgres database using K8s YAML manifest files.
 
-1. Set up Bitnami Repo
+1. Create a Kubernetes PostgreSQL deployment
 ```bash
-helm repo add <REPO_NAME> https://charts.bitnami.com/bitnami
+kubectl apply -f project/k8s_yaml_files/postgres-deployment.yaml
 ```
 
-2. Install PostgreSQL Helm Chart
+2. Create a K8s PostgreSQL service
 ```
-helm install <SERVICE_NAME> <REPO_NAME>/postgresql
+kubectl apply -f project/k8s_yaml_files/postgres-service.yaml
 ```
-
-This should set up a Postgre deployment at `<SERVICE_NAME>-postgresql.default.svc.cluster.local` in your Kubernetes cluster. You can verify it by running `kubectl svc`
-
-By default, it will create a username `postgres`. The password can be retrieved with the following command:
-```bash
-export POSTGRES_PASSWORD=$(kubectl get secret --namespace default <SERVICE_NAME>-postgresql -o jsonpath="{.data.postgres-password}" | base64 -d)
-
-echo $POSTGRES_PASSWORD
-```
-
-<sup><sub>* The instructions are adapted from [Bitnami's PostgreSQL Helm Chart](https://artifacthub.io/packages/helm/bitnami/postgresql).</sub></sup>
 
 3. Test Database Connection
 The database is accessible within the cluster. This means that when you will have some issues connecting to it via your local environment. You can either connect to a pod that has access to the cluster _or_ connect remotely via [`Port Forwarding`](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/)
