@@ -1,4 +1,4 @@
-git config --global user.name "Shreedhar Kodate"
-git config --global user.email "shreedhar.kodate.vz@renesas.com"
+git config --global user.name "FName LName"
+git config --global user.email "abcdefghijkl@xyz.com"
 eval "$(ssh-agent -s)"
 ssh-add ../udacity2
