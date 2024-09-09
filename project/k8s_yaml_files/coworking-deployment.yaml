@@ -67,7 +67,7 @@ spec:
               key: DB_PORT
         - name: DB_PASSWORD
           valueFrom:
-            configMapKeyRef:
-              name: coworking-postgresql
+            secretKeyRef:
+              name: coworking-psql-pwd
               key: DB_PASSWORD
       restartPolicy: Always
