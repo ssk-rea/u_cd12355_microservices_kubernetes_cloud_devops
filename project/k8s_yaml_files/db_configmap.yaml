@@ -4,7 +4,6 @@ metadata:
   name: coworking-postgresql
 data:
   DB_USERNAME: myuser
-  DB_HOST: '10.100.225.7'
+  DB_HOST: '10.100.151.233'
   DB_PORT: '5432'
   DB_NAME: mydatabase
-  DB_PASSWORD: mypassword
